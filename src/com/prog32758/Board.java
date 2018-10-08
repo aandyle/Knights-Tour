@@ -58,7 +58,6 @@ public class Board {
 	}
 	
 	
-	
 	public void recordMove(int x, int y){	//record a move; used by constructor
 		board[x][y] = moveCount++;
 		setxPos(x);
@@ -105,7 +104,7 @@ public class Board {
 		
 		moves.addAll(Arrays.asList(move1,move2,move3,move4,move5,move6,move7,move8));
 		
-		Iterator<Coordinates> i = moves.iterator();
+		Iterator<Coordinates> i = moves.iterator();				//remove outofbounds coordinates
 		while (i.hasNext()) {
 			Coordinates moves = i.next();
 			System.out.print("" + moves.getX() + " " + moves.getY() + "   "); 
@@ -115,7 +114,7 @@ public class Board {
 			}
 		}
 		
-		Iterator<Coordinates> z = moves.iterator();
+		Iterator<Coordinates> z = moves.iterator();				//verify availability
 		while (z.hasNext()) {
 			Coordinates moves = z.next();
 			if (!isAvailable(moves.getX(), moves.getY())) {
@@ -124,9 +123,9 @@ public class Board {
 			}
 		}
 		
-		System.out.println(moves.toString());					//show all possible moves
+		System.out.println(moves.toString());					//show all possible moves(debug)
 		
-		Coordinates selected = moves.get(r.nextInt(moves.size()));
+		Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose random coordinate
 		System.out.println(selected);
 		return selected;
 	}

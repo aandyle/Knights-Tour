@@ -26,7 +26,9 @@ public class Dumb {
 
 		Board b1 = new Board(x,y);
 		
-		for (int i = 0; i < 40; i ++) {
+		
+		
+		for (int i = 0; i < 64; i ++) {
 			b1.recordMove(b1.moves());
 			b1.printBoard();
 			System.out.println("Iternation number: " + i);
