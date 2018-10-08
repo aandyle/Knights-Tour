@@ -25,22 +25,17 @@ public class Coordinates {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	public void storeCoordinates(Coordinates coord) {
-		ArrayList<Coordinates> coordinates = new ArrayList<>();
-		coordinates.add(coord);
+
+	@Override
+	public String toString() {
+		return "Coordinates [y=" + x + ", x=" + y + "]";
 	}
 	
-	// possible moves from coordinates
-	// p1: R 2 up 1
-	// p2: R 1 up 2
-	// p3: L 1 up 2
-	// p4: L 2 up 1
-	// p5: L 2 down 1
-	// p6: L 1 down 2
-	// p7: R 1 down 2
-	// p8: R 2 down 1
 	
 	
+//	public void storeCoordinates(Coordinates coord) {
+//		ArrayList<Coordinates> coordinates = new ArrayList<>();
+//		coordinates.add(coord);
+//	}
 
 }

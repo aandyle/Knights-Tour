@@ -24,45 +24,24 @@ public class Dumb {
 		System.out.print("Enter starting y coordinate: ");
 		y = k.nextInt();
 
-		Coordinates start = new Coordinates(x, y); // starting position
 		Board b1 = new Board(x,y);
 		
+		for (int i = 0; i < 40; i ++) {
+			b1.recordMove(b1.moves());
+			b1.printBoard();
+			System.out.println("Iternation number: " + i);
+		}
 		
+//		while(b1.moves() != ) {
+//			
+//		}
 		
-		b1.printBoard();
 		
 
 		// if moves.hasnext then keep moving
 		// else end and print array
 
 
-	}
-	
-	public static void calculateMoves(Coordinates position) {
-		
-		ArrayList<Coordinates> moves = new ArrayList<>();
-		
-		Coordinates move1 = new Coordinates(position.getX()+2,position.getY()+1);
-		Coordinates move2 = new Coordinates(position.getX()+1,position.getY()+2);
-		Coordinates move3 = new Coordinates(position.getX()-1,position.getY()+2);
-		Coordinates move4 = new Coordinates(position.getX()-2,position.getY()+1);
-		Coordinates move5 = new Coordinates(position.getX()-2,position.getY()-1);
-		Coordinates move6 = new Coordinates(position.getX()-1,position.getY()-2);
-		Coordinates move7 = new Coordinates(position.getX()+1,position.getY()-2);
-		Coordinates move8 = new Coordinates(position.getX()+2,position.getY()-1);
-		
-		moves.addAll(Arrays.asList(move1,move2,move3,move4,move5,move6,move7,move8));
-		
-		for (Coordinates i : moves) {
-			if(i.getX() < 0 | i.getY() < 0) {	//remove negative coordinates
-				moves.remove(i);
-			}
-			
-			if(b1.isAvailable(i.getX(),i.getY())) {		//check if move is available
-				
-			}
-		}
-		
 	}
 
 }
