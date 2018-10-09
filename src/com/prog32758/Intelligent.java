@@ -5,16 +5,38 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class Intelligent extends Board{
-
+	
 	public Intelligent(int x, int y) {
 		super(x, y);
 	}
 	
-	//hard-code heuristics map into 2d array
-	//match available coordinates with heuristics map values 
+	//heuristics board initialization
+	private int[] r1 = new int[] {		//row 0,7
+			2,3,4,4,4,4,3,2
+	};
+	
+	private int[] r2 = new int[] {		//row 1,6
+			3,4,6,6,6,6,4,3
+	};
+	
+	private int[] r3 = new int[] {		//row 2,3,4,5
+			4,6,8,8,8,8,6,5
+	};
+	
+	private int[][] heuristicBoard = new int[][] {
+			r1,r2,r3,r3,r3,r3,r2,r1
+	};
+		
+	//hard-code heuristics map into 2d array 		------------------------------	DONE
+	//match available coordinates with heuristics map values 	------------------	
 	//use HashMap to store custom class Coordinate(Key) with heuristic map(value)
 	//determine lowest heuristic values, discard the rest of HashMap
 	//randomly select one from the Map
+	
+	public void accessibility(Coordinates coord) {
+		//match available coordinates with heuristics map values
+		
+	}
 	
 	public Coordinates moves() {			//returns coordinates for a random move
 		moves.clear();

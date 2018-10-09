@@ -15,7 +15,7 @@ public class Dumb {
 	// p8: R 2 down 1
 
 	public static void main(String[] args) {
-
+		
 		int x, y;
 		Scanner k = new Scanner(System.in);
 
@@ -26,8 +26,6 @@ public class Dumb {
 
 		Board b1 = new Board(x,y);	//itr1 & itr2
 		
-		
-		
 		for (int i = 0; i < 64; i ++) {
 			b1.recordMove(b1.moves());
 			b1.printBoard();
@@ -37,8 +35,7 @@ public class Dumb {
 //		while(b1.moves() != ) {
 //			
 //		}
-		
-		
+				
 
 		// if moves.hasnext then keep moving
 		// else end and print array
