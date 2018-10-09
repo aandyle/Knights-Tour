@@ -24,14 +24,14 @@ public class Dumb {
 		System.out.print("Enter starting y coordinate: ");
 		y = k.nextInt();
 
-		Board b1 = new Board(x,y);
+		Board b1 = new Board(x,y);	//itr1 & itr2
 		
 		
 		
 		for (int i = 0; i < 64; i ++) {
 			b1.recordMove(b1.moves());
 			b1.printBoard();
-			System.out.println("Iternation number: " + i);
+			System.out.println("Iternation number: " + i);	//need to add two
 		}
 		
 //		while(b1.moves() != ) {
