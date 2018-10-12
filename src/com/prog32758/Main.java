@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Dumb {
+public class Main {
 	// p1: R 2 up 1
 	// p2: R 1 up 2
 	// p3: L 1 up 2
