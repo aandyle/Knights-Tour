@@ -3,7 +3,7 @@ package com.prog32758;
 import java.util.ArrayList;
 
 public class Coordinates {
-	private int x, y;
+	private int x, y, heuristicRank;
 	
 	public Coordinates(int x, int y) {
 		this.x = x;
@@ -29,6 +29,14 @@ public class Coordinates {
 	@Override
 	public String toString() {
 		return "Coordinates [y=" + x + ", x=" + y + "]";
+	}
+
+	public int getHeuristicRank() {
+		return heuristicRank;
+	}
+
+	public void setHeuristicRank(int heuristicRank) {
+		this.heuristicRank = heuristicRank;
 	}
 	
 	
