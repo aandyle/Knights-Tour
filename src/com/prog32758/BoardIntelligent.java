@@ -28,7 +28,7 @@ public class BoardIntelligent extends Board {
 			3, 4, 6, 6, 6, 6, 4, 3 };
 
 	private int[] r3 = new int[] { // row 2,3,4,5
-			4, 6, 8, 8, 8, 8, 6, 5 };
+			4, 6, 8, 8, 8, 8, 6, 4 };
 
 	private int[][] heuristicBoard = new int[][] { r1, r2, r3, r3, r3, r3, r2, r1 };
 
@@ -39,6 +39,7 @@ public class BoardIntelligent extends Board {
 	// randomly select one from the Map
 
 	public void setHeuristic(Coordinates coord) {
+//		System.out.println("Set heuristic: " + );
 		coord.setHeuristicRank(heuristicBoard[coord.getX()][coord.getY()]);
 	}
 
@@ -46,15 +47,40 @@ public class BoardIntelligent extends Board {
 	public Coordinates bestCoordinate(ArrayList<Coordinates> coords) {
 		Coordinates prev = coords.get(0);
 		Coordinates best = coords.get(0);
-
+		ArrayList<Coordinates> bestMoves = new ArrayList<>();
+		
+		//find strongest heuristic rank
 		Iterator<Coordinates> j = moves.iterator();
 		while (j.hasNext()) {
 			Coordinates moves = j.next();
+			System.out.println("Heuristic value of " + moves + " is " + moves.getHeuristicRank());
 			if (moves.getHeuristicRank() < prev.getHeuristicRank()) {
 				prev = best;
 				best = moves;
 			}
 		}
+		System.out.println("Best heuristic rank is: " + best.getHeuristicRank());
+		
+		//get all coords that match best Heuristic rank
+		Iterator<Coordinates> e = moves.iterator();
+		while (e.hasNext()) {
+			Coordinates moves = e.next();
+			if (moves.getHeuristicRank() == best.getHeuristicRank()) {
+				bestMoves.add(moves);
+				System.out.print(moves.getHeuristicRank());
+			}
+		}
+		
+		//DEBUG candidate coords
+		System.out.print("Candidate coords: ");
+		Iterator<Coordinates> ee = bestMoves.iterator();
+		while (ee.hasNext()) {
+			Coordinates moves = ee.next();
+			System.out.print(moves + " ");
+		}
+		
+		//select random move
+		best = bestMoves.get(r.nextInt(bestMoves.size()));
 		System.out.println("Next best move is: " + best);
 		return best;
 	}

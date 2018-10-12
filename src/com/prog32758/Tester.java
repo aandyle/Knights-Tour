@@ -28,7 +28,7 @@ public class Tester {
 		if (k.next().equals("n")) {
 			Board b1 = new Board(x,y);	//itr1 & itr2
 			
-			for (int i = 0; i < 64; i ++) {
+			for (int i = 0; i < 63; i ++) {
 				b1.recordMove(b1.moves());
 				b1.printBoard();
 				System.out.println("Iternation number: " + i);	//need to add two
@@ -36,7 +36,7 @@ public class Tester {
 		} else {
 			BoardIntelligent bi1 = new BoardIntelligent(x,y);	//itr1 & itr2
 			
-			for (int i = 0; i < 64; i ++) {
+			for (int i = 0; i < 63; i ++) {
 				bi1.recordMove(bi1.moves());
 				bi1.printBoard();
 				System.out.println("Iternation number: " + i);	//need to add two
