@@ -38,12 +38,5 @@ public class Coordinates {
 	public void setHeuristicRank(int heuristicRank) {
 		this.heuristicRank = heuristicRank;
 	}
-	
-	
-	
-//	public void storeCoordinates(Coordinates coord) {
-//		ArrayList<Coordinates> coordinates = new ArrayList<>();
-//		coordinates.add(coord);
-//	}
 
 }

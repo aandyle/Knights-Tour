@@ -5,17 +5,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Tester {
-	// p1: R 2 up 1
-	// p2: R 1 up 2
-	// p3: L 1 up 2
-	// p4: L 2 up 1
-	// p5: L 2 down 1
-	// p6: L 1 down 2
-	// p7: R 1 down 2
-	// p8: R 2 down 1
 
 	public static void main(String[] args) {
-		
+
 		int x, y;
 		Scanner k = new Scanner(System.in);
 
@@ -23,36 +15,25 @@ public class Tester {
 		x = k.nextInt();
 		System.out.print("Enter starting y coordinate: ");
 		y = k.nextInt();
-		
+
 		System.out.print("Select n for non intelligent, or anything else for intelligent: ");
 		if (k.next().equals("n")) {
-			Board b1 = new Board(x,y);	//itr1 & itr2
-			
-			for (int i = 0; i < 63; i ++) {
+			Board b1 = new Board(x, y); // itr1 & itr2
+
+			for (int i = 0; i < 63; i++) {
 				b1.recordMove(b1.moves());
 				b1.printBoard();
-				System.out.println("Iternation number: " + i);	//need to add two
+				System.out.println("Iternation number: " + i); // need to add two
 			}
 		} else {
-			BoardIntelligent bi1 = new BoardIntelligent(x,y);	//itr1 & itr2
-			
-			for (int i = 0; i < 63; i ++) {
+			BoardIntelligent bi1 = new BoardIntelligent(x, y); // itr1 & itr2
+
+			for (int i = 0; i < 63; i++) {
 				bi1.recordMove(bi1.moves());
 				bi1.printBoard();
-				System.out.println("Iternation number: " + i);	//need to add two
+				System.out.println("Iternation number: " + i); // need to add two
 			}
 		}
-		
-		
-		
-//		while(b1.moves() != ) {
-//			
-//		}
-				
-
-		// if moves.hasnext then keep moving
-		// else end and print array
-
 
 	}
 
