@@ -9,4 +9,25 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>redirect</display-name>
+    <servlet-name>redirect</servlet-name>
+    <servlet-class>com.prog32758.redirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>redirect</servlet-name>
+    <url-pattern>/redirect</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Random</display-name>
+    <servlet-name>Random</servlet-name>
+    <servlet-class>com.prog32758.Random</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Random</servlet-name>
+    <url-pattern>/Random</url-pattern>
+  </servlet-mapping>
 </web-app>

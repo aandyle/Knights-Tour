@@ -34,6 +34,12 @@ public class Tester {
 				System.out.println("Iternation number: " + i); // need to add two
 			}
 		}
+		
+		//TODO
+		//-write to a text file
+		//-display output in browser
+		//-use redirect/requestdispatcher
+		
 
 	}
 

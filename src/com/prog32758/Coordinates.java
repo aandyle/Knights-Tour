@@ -2,6 +2,7 @@ package com.prog32758;
 
 import java.util.ArrayList;
 
+// custom class to store x,y pairs and heuristic values
 public class Coordinates {
 	private int x, y, heuristicRank;
 	

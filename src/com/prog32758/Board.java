@@ -9,10 +9,12 @@ public class Board {
 	private int[][] board;
 	private int moveCount;
 	private int xPos, yPos;
-	private ArrayList<Coordinates> moves = new ArrayList<>();
+	private boolean canMove = true;
+	private ArrayList<Coordinates> moves = new ArrayList<>();	// store potential coordinates
 	Random r = new Random();
 	
-	public Board(int x, int y) {	//constructor; custom board start x,y
+	// constructor; custom board start x,y
+	public Board(int x, int y) {	
 		board = new int[8][8];
 		startBoard();
 		moveCount = 1;
@@ -21,7 +23,8 @@ public class Board {
 		yPos = y;
 	}
 	
-	public Board() {				//constructor; default board start 0,0
+	// constructor; default board start 0,0
+	public Board() {				
 		board = new int[8][8];
 		startBoard();
 		moveCount = 1;
@@ -29,16 +32,23 @@ public class Board {
 		xPos = 0;
 		yPos = 0;
 	}
-	
-	public void startBoard(){				//initialize board values to zero
+
+	public boolean isCanMove() {
+		return canMove;
+	}
+
+	public void setCanMove(boolean canMove) {
+		this.canMove = canMove;
+	}
+
+	// initialize board values to zero
+	public void startBoard(){				
 		for (int i = 0; i < 8; i++) {
 			for (int x = 0; x < 8; x++) {
 				board[i][x] = 0;
 			}
 		}
-		
 	}
-	
 	
 	//getter setters
 	public int getxPos() {
@@ -57,29 +67,35 @@ public class Board {
 		this.yPos = yPos;
 	}
 	
-	
-	public void recordMove(int x, int y){	//record a move; used by constructor
+	// record a move; used by constructor for custom starting coordinates
+	public void recordMove(int x, int y){	
+		
 		board[x][y] = moveCount++;
 		setxPos(x);
 		setyPos(y);
 	}
 	
-												//overloaded; used by moves()
+	// overloaded; used by moves()
 	public void recordMove(Coordinates move) {
-		board[move.getX()][move.getY()] = moveCount++;
-		setxPos(move.getX());
-		setyPos(move.getY());
+		if(canMove) {
+			board[move.getX()][move.getY()] = moveCount++;
+			setxPos(move.getX());
+			setyPos(move.getY());
+		}
 	}
 	
 	
 	public void printBoard() {							//basically a toString
 		for (int i = 0; i < 8; i++) {
 			for (int z = 0; z < 8; z++) {
-//				System.out.print(board[i][z] + " ");
 				System.out.print(String.format("%-4s", board[i][z]));
 			}
 			System.out.println();
 		}
+	}
+	
+	public int printMove(int x, int y) {				//returns the move# at a coordinate, used for jsp
+		return board[x][y];
 	}
 	
 	public boolean isAvailable(int x, int y) {			//is board position available?
@@ -88,8 +104,9 @@ public class Board {
 		else
 			return true;
 	}
-	
-	public Coordinates moves() {			//returns coordinates for a random move
+
+	// returns coordinates for a random move
+	public Coordinates moves() {			
 		moves.clear();
 		moves = new ArrayList<>();
 		
@@ -114,7 +131,7 @@ public class Board {
 			}
 		}
 		
-		Iterator<Coordinates> z = moves.iterator();				//verify availability
+		Iterator<Coordinates> z = moves.iterator();				//verify availability of coord
 		while (z.hasNext()) {
 			Coordinates moves = z.next();
 			if (!isAvailable(moves.getX(), moves.getY())) {
@@ -123,11 +140,14 @@ public class Board {
 			}
 		}
 		
-		System.out.println(moves.toString());					//show all possible moves(debug)
+		if (!moves.isEmpty()) {
+			Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose random coordinate
+			return selected;
+		} else {
+			setCanMove(false);
+			return null;
+		}
 		
-		Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose random coordinate
-		System.out.println(selected);
-		return selected;
 	}
 
 }
