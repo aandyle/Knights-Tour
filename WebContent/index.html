@@ -24,12 +24,13 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<title>Knights Tour - Home</title>
 </head>
+
 <body>
 	<div class="container" id="home">
 		<div class="jumbotron">
 			<h1 class="display-1">Knights Tour</h1>
 			<p>This program attempts to get the Knight from the game Chess to touch every board position only once. 
-			The intelligent mode checks against an accessibility map to choose the next best move.
+			The intelligent mode checks against an accessibility heuristic map to choose the next best move.
 			With intelligent mode off, the program chooses its next move at random.</p>
 			
 			<hr>
@@ -48,13 +49,13 @@
 				
 				<div class="form-row">
 					<div class="col-2">
-						Starting Coordinates:
+						Start Coordinates (x,y):
 					</div>
 					<div class="col-1">
-						<input type="number" name="x" min="0" max="7" placeholder="X" required> 
+						<input type="number" name="x" min="0" max="7" placeholder="0-7" required> 
 					</div>
 					<div class="col-1">
-						<input type="number" name="y" min="0" max="7" placeholder="Y" required> <br>
+						<input type="number" name="y" min="0" max="7" placeholder="0-7" required> <br>
 					</div>
 				</div>
 				
@@ -77,7 +78,6 @@
 						<input class="btn btn-primary" type="submit" value="Run">
 					</div>
 				</div>
-				
 			</form>
 		</div>
 	</div>
