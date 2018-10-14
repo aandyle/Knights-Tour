@@ -19,12 +19,12 @@ public class redirect extends HttpServlet {
 		RequestDispatcher rd;
 		String mode = request.getParameter("mode");
 		
-		if("dumb".equals(mode)) {
+		if("smart".equals(mode)) {
+			response.sendRedirect("smart.jsp?x=" + request.getParameter("x") + "&y=" 			//sendRedirect doesn't automatically pass parameters???????
+					+ request.getParameter("y") + "&cycles=" + request.getParameter("cycles"));
+		} else {
 			rd = request.getRequestDispatcher("random.jsp");
 			rd.forward(request, response);
-		} else {
-			response.sendRedirect("smart.jsp?x=" + request.getParameter("x") + "&y=" 				//sendRedirect doesn't pass parameters???????
-					+ request.getParameter("y") + "&cycles=" + request.getParameter("cycles"));
 		}
 	}
 
