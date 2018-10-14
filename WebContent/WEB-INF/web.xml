@@ -29,8 +29,8 @@
     <servlet-name>redirect</servlet-name>
     <url-pattern>/redirect</url-pattern>
   </servlet-mapping>
-  <error-page>
-  	<error-code>404</error-code>
+  <error-page>							
+  	<error-code>500</error-code>			<!-- execution error, if user trys to access random or smart.jsp directly -->
   	<location>/error.jsp</location>
   </error-page>
 </web-app>
