@@ -7,13 +7,14 @@
 <body>
 	<div>
 		Please select a mode:<br>
-		<form action = "redirect" method = "post">
+		<form action = "redirect" method="get">
 			<input type = "radio" name = "mode" value = "dumb" checked = "checked">Non-intelligent<br>
 			<input type = "radio" name = "mode" value = "smart">Intelligent<br><br>
+			
 			Enter starting coordinates:<br>
 			X: <input type = "number" name = "x" value = "0" min = "0" max = "7"> 
 			Y: <input type = "number" name = "y" value = "0" min = "0" max = "7"> <br><br>
-			Run Cycles <input type = "number" name = "cycles" min = "1" step = "1" value = "1"><br><br><br>
+			Run Cycles (zero base): <input type = "number" name = "cycles" min = "1" step = "1" value = "1"><br><br><br>
 			
 			<input type = "submit" value = "Run">
 		</form>

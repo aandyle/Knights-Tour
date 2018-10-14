@@ -1,5 +1,7 @@
 package com.prog32758;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -67,12 +69,12 @@ public class Board {
 		this.yPos = yPos;
 	}
 	
-	// record a move; used by constructor for custom starting coordinates
-	public void recordMove(int x, int y){	
-		
-		board[x][y] = moveCount++;
-		setxPos(x);
-		setyPos(y);
+	public int getMoveCount() {
+		return moveCount;
+	}
+
+	public void setMoveCount(int moveCount) {
+		this.moveCount = moveCount;
 	}
 	
 	// overloaded; used by moves()
@@ -92,6 +94,41 @@ public class Board {
 			}
 			System.out.println();
 		}
+		
+				
+	}
+	
+	//write to file and output to console for debugging
+	public void printBoard(int iter, String mode) {
+		File f;
+		for (int i = 0; i < 8; i++) {
+			for (int z = 0; z < 8; z++) {
+				System.out.print(String.format("%-4s", board[i][z]));
+			}
+			System.out.println();
+		}
+		
+		if("dumb".equals(mode)) {
+			String path = "c:/temp/andyleNonIntelligentMethod.txt";
+			try {
+				FileWriter fw = new FileWriter(path,true);
+			    fw.write("Trial " + iter + " : " + "The Knight was able to successfully touch " + (getMoveCount()-1) + " squares.\n");
+			    fw.close();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			String path = "c:/temp/andyleIntelligentMethod.txt";
+			try {
+				FileWriter fw = new FileWriter(path,true);
+			    fw.write("Trial " + iter + " : " + "The Knight was able to successfully touch " + (getMoveCount()-1) + " squares.\n");
+			    fw.close();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		
 	}
 	
 	public int printMove(int x, int y) {				//returns the move# at a coordinate, used for jsp
@@ -142,6 +179,7 @@ public class Board {
 		
 		if (!moves.isEmpty()) {
 			Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose random coordinate
+			System.out.println(selected);
 			return selected;
 		} else {
 			setCanMove(false);

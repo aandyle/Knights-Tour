@@ -98,6 +98,11 @@ public class BoardIntelligent extends Board {
 			setHeuristic(moves);
 		}
 		
-		return bestCoordinate(moves);		//return the next best coordinate to go to via bestCoordinate method
+		if (!moves.isEmpty()) {
+			return bestCoordinate(moves);	//return the next best coordinate to go to via bestCoordinate method
+		} else {
+			setCanMove(false);
+			return null;
+		}
 	}
 }

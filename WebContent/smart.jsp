@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ page import = "com.prog32758.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,10 +17,10 @@
 	<!-- Latest compiled JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<title>Knights Tour - Non-intelligent</title>
+	<title>Knights Tour - Intelligent</title>
 </head>
 <body>
-
+	
 	<!-- run program -->
 	<%
 	int x = Integer.parseInt(request.getParameter("x"));
@@ -29,11 +29,11 @@
 
 	// generate grid with values
 	for(int k = 0; k < cycles; k ++){
-		Board b = new Board(x,y);
+		BoardIntelligent b = new BoardIntelligent(x,y);
 		while (b.isCanMove()) {
 			b.recordMove(b.moves());
 		}
-		b.printBoard(k, "dumb");
+		b.printBoard(k, "smart");
 		
 		b.setMoveCount(b.getMoveCount() - 1);	//initial mv and zero base adjust
 		out.println("<div class='container'>");
@@ -43,30 +43,31 @@
 			out.println("</div>");
 			
 			out.println("<table class='table table-bordered'");
-				for(int j = 0; j < 8; j++){
-					out.print("<tr>");
-					for(int i = 0; i < 8; i ++){
-						if(b.printMove(j,i) == 64) {
-							out.println("<td class='bg-success'>");
-								out.println(b.printMove(j, i));
-							out.println("</td>");
-						} else if(b.printMove(j,i) == b.getMoveCount()){
-							out.println("<td class='bg-danger'>");
-								out.println(b.printMove(j, i));
-							out.println("</td>");
-						} else if(i%2 == j%2){
-							out.println("<td class='bg-dark'>");
-								out.println("<p class='text-light'>" + b.printMove(j, i) + "</p>");
-							out.println("</td>");
-						} else {
-							out.println("<td>");
+			for(int j = 0; j < 8; j++){
+				out.print("<tr>");
+				for(int i = 0; i < 8; i ++){
+					if(b.printMove(j,i) == 64) {
+						out.println("<td class='bg-success'>");
 							out.println(b.printMove(j, i));
 						out.println("</td>");
-						}
+					} else if(b.printMove(j,i) == b.getMoveCount()){
+						out.println("<td class='bg-danger'>");
+							out.println(b.printMove(j, i));
+						out.println("</td>");
+					} else if(i%2 == j%2){
+						out.println("<td class='bg-dark'>");
+							out.println("<p class='text-light'>" + b.printMove(j, i) + "</p>");
+						out.println("</td>");
+					} else {
+						out.println("<td>");
+						out.println(b.printMove(j, i));
+					out.println("</td>");
 					}
-					out.println("</tr>");
-				}			
-			out.println("</table>");		
+
+				}
+				out.println("</tr>");
+			}			
+		out.println("</table>");
 		out.println("</div>");
 	}
 	%>

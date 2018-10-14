@@ -40,7 +40,6 @@ public class Tester {
 		//-display output in browser
 		//-use redirect/requestdispatcher
 		
-
 	}
 
 }

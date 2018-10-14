@@ -15,16 +15,17 @@ public class redirect extends HttpServlet {
         super();
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd;
 		String mode = request.getParameter("mode");
-		RequestDispatcher rd = request.getRequestDispatcher("random.jsp");
 		
 		if("dumb".equals(mode)) {
+			rd = request.getRequestDispatcher("random.jsp");
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect("smart.jsp");
+			response.sendRedirect("smart.jsp?x=" + request.getParameter("x") + "&y=" 				//sendRedirect doesn't pass parameters???????
+					+ request.getParameter("y") + "&cycles=" + request.getParameter("cycles"));
 		}
-		
 	}
 
 }
