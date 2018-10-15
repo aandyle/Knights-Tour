@@ -35,7 +35,7 @@
 		out.println("<div id='board'>");
 
 		// generate grid with values
-		for (int k = 0; k < cycles; k++) {
+		for (int k = 0; k < cycles; k++) {		//run for number of cycles 
 			Board b = new Board(x, y);
 			while (b.isCanMove()) {
 				b.recordMove(b.moves());

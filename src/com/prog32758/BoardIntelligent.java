@@ -3,6 +3,7 @@ package com.prog32758;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class BoardIntelligent extends Board {
@@ -36,27 +37,30 @@ public class BoardIntelligent extends Board {
 
 	// check for best coordinates to move to
 	public Coordinates bestCoordinate(ArrayList<Coordinates> coords) {
-		Coordinates prev = coords.get(0);
 		Coordinates best = coords.get(0);
+		
 		ArrayList<Coordinates> bestMoves = new ArrayList<>();
 		
-		Iterator<Coordinates> j = moves.iterator();	//find strongest heuristic rank
+		ListIterator<Coordinates> j = coords.listIterator();	//finds strongest heuristic rank
 		while (j.hasNext()) {
-			Coordinates moves = j.next();
-			if (moves.getHeuristicRank() < prev.getHeuristicRank()) {
-				prev = best;
-				best = moves;
+			Coordinates coord = j.next();			
+			if(j.hasPrevious()) {
+				if(coord.getHeuristicRank() < best.getHeuristicRank()) {
+					best = coord;
+				}
 			}
 		}
-		
-		Iterator<Coordinates> e = moves.iterator();		//get all coords that match strongest Heuristic rank
-		while (e.hasNext()) {							//	and add to ArrayList bestMoves
-			Coordinates moves = e.next();
-			if (moves.getHeuristicRank() == best.getHeuristicRank()) {
-				bestMoves.add(moves);				
+				
+		Iterator<Coordinates> e = coords.iterator();		//get all coords that match strongest Heuristic rank
+		while (e.hasNext()) {								//	and add to ArrayList bestMoves
+			Coordinates coord = e.next();
+			if (coord.getHeuristicRank() == best.getHeuristicRank()) {
+				bestMoves.add(coord);
+				System.out.println(coord);
 			}
 		}		
-		return bestMoves.get(r.nextInt(bestMoves.size()));	//select random move from ArrayList
+		
+		return bestMoves.get(r.nextInt(bestMoves.size()));	//select random coordinate from ArrayList bestMoves
 	}
 
 	@Override // instead of random moves, checks heuristics via bestCoordinate method
@@ -88,9 +92,19 @@ public class BoardIntelligent extends Board {
 		while (z.hasNext()) {
 			Coordinates moves = z.next();
 			if (!isAvailable(moves.getX(), moves.getY())) {
+				System.out.println(moves + " REMOVED");		//DEBUG
 				z.remove();
 			}
 		}
+		
+		System.out.println("CANDIDATE MOVES");
+		//DEBUG
+		Iterator<Coordinates> l = moves.iterator();	
+		while (l.hasNext()) {
+			Coordinates moves = l.next();
+			System.out.println(moves);
+		}
+		
 
 		Iterator<Coordinates> j = moves.iterator();		//determine heuristic values for each coordinate
 		while (j.hasNext()) {
