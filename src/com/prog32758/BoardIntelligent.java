@@ -51,19 +51,18 @@ public class BoardIntelligent extends Board {
 			}
 		}
 				
-		Iterator<Coordinates> e = coords.iterator();		//get all coords that match strongest Heuristic rank
-		while (e.hasNext()) {								//	and add to ArrayList bestMoves
+		Iterator<Coordinates> e = coords.iterator();			//get all coords that match strongest Heuristic rank
+		while (e.hasNext()) {									//	and add to ArrayList bestMoves
 			Coordinates coord = e.next();
 			if (coord.getHeuristicRank() == best.getHeuristicRank()) {
 				bestMoves.add(coord);
-				System.out.println(coord);
 			}
 		}		
 		
 		return bestMoves.get(r.nextInt(bestMoves.size()));	//select random coordinate from ArrayList bestMoves
 	}
 
-	@Override // instead of random moves, checks heuristics via bestCoordinate method
+	@Override //override: instead of random moves, checks heuristics via bestCoordinate method
 	public Coordinates moves() { // returns coordinates for a random move
 		moves.clear();
 		moves = new ArrayList<>();	// Store all possible moves
@@ -82,7 +81,6 @@ public class BoardIntelligent extends Board {
 		Iterator<Coordinates> i = moves.iterator();		//eliminate any coordinates that are out of bounds
 		while (i.hasNext()) {
 			Coordinates moves = i.next();
-			System.out.print("" + moves.getX() + " " + moves.getY() + "   ");
 			if (moves.getX() < 0 | moves.getY() < 0 | moves.getX() > 7 | moves.getY() > 7) {
 				i.remove();
 			}
@@ -92,20 +90,10 @@ public class BoardIntelligent extends Board {
 		while (z.hasNext()) {
 			Coordinates moves = z.next();
 			if (!isAvailable(moves.getX(), moves.getY())) {
-				System.out.println(moves + " REMOVED");		//DEBUG
 				z.remove();
 			}
 		}
 		
-		System.out.println("CANDIDATE MOVES");
-		//DEBUG
-		Iterator<Coordinates> l = moves.iterator();	
-		while (l.hasNext()) {
-			Coordinates moves = l.next();
-			System.out.println(moves);
-		}
-		
-
 		Iterator<Coordinates> j = moves.iterator();		//determine heuristic values for each coordinate
 		while (j.hasNext()) {
 			Coordinates moves = j.next();
@@ -113,7 +101,7 @@ public class BoardIntelligent extends Board {
 		}
 		
 		if (!moves.isEmpty()) {
-			return bestCoordinate(moves);	//return the next best coordinate to go to via bestCoordinate method
+			return bestCoordinate(moves);				//return the next best coordinate to go to via bestCoordinate method
 		} else {
 			setCanMove(false);
 			return null;

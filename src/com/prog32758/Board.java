@@ -161,10 +161,8 @@ public class Board {
 		Iterator<Coordinates> i = moves.iterator();				//remove outofbounds coordinates
 		while (i.hasNext()) {
 			Coordinates moves = i.next();
-			System.out.print("" + moves.getX() + " " + moves.getY() + "   "); 
 			if (moves.getX() < 0 | moves.getY() < 0 | moves.getX() > 7 | moves.getY() > 7) {
 				i.remove();
-				System.out.println("Removed");
 			}
 		}
 		
@@ -172,14 +170,12 @@ public class Board {
 		while (z.hasNext()) {
 			Coordinates moves = z.next();
 			if (!isAvailable(moves.getX(), moves.getY())) {
-				System.out.println(moves + "Unavailable");
 				z.remove();
 			}
 		}
 		
 		if (!moves.isEmpty()) {
 			Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose random coordinate
-			System.out.println(selected);
 			return selected;
 		} else {
 			setCanMove(false);
