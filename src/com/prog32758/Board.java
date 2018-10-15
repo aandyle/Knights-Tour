@@ -8,10 +8,10 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Board {
-	private int[][] board;
-	private int moveCount;
-	private int xPos, yPos;
-	private boolean canMove = true;
+	private int[][] board;				// store board/move history
+	private int moveCount;				// counts moves made
+	private int xPos, yPos;				// coordinates
+	private boolean canMove = true;		// moves available?
 	private ArrayList<Coordinates> moves = new ArrayList<>();	// store potential coordinates
 	Random r = new Random();
 	
@@ -23,16 +23,6 @@ public class Board {
 		board[x][y] = moveCount++;
 		xPos = x;
 		yPos = y;
-	}
-	
-	// constructor; default board start 0,0
-	public Board() {				
-		board = new int[8][8];
-		startBoard();
-		moveCount = 1;
-		board[0][0] = moveCount++;
-		xPos = 0;
-		yPos = 0;
 	}
 
 	public boolean isCanMove() {
@@ -77,7 +67,7 @@ public class Board {
 		this.moveCount = moveCount;
 	}
 	
-	// overloaded; used by moves()
+	// used by moves(); record move to board, update coordinates
 	public void recordMove(Coordinates move) {
 		if(canMove) {
 			board[move.getX()][move.getY()] = moveCount++;
@@ -86,32 +76,22 @@ public class Board {
 		}
 	}
 	
-	
-	public void printBoard() {							//basically a toString
+	//can disregard; basically a toString, prints to console for debugging purposes
+	public void printBoard() {							
 		for (int i = 0; i < 8; i++) {
 			for (int z = 0; z < 8; z++) {
 				System.out.print(String.format("%-4s", board[i][z]));
 			}
 			System.out.println();
 		}
-		
-				
 	}
 	
-	//write to file and output to console for debugging
-	public void printBoard(int iter, String mode) {
-		File f;
-		for (int i = 0; i < 8; i++) {
-			for (int z = 0; z < 8; z++) {
-				System.out.print(String.format("%-4s", board[i][z]));
-			}
-			System.out.println();
-		}
-		
-		if("dumb".equals(mode)) {
+	//overloaded of above; write to file
+	public void printBoard(int iter, String mode) {		
+		if("dumb".equals(mode)) {	// check if non-intelligent or intelligent to determine file name
 			String path = "c:/temp/andyleNonIntelligentMethod.txt";
 			try {
-				FileWriter fw = new FileWriter(path,true);
+				FileWriter fw = new FileWriter(path,true);	// 'true' = append
 			    fw.write("Trial " + iter + " : " + "The Knight was able to successfully touch " + (getMoveCount()-1) + " squares.\n");
 			    fw.close();
 			} catch (Exception e1) {
@@ -127,15 +107,15 @@ public class Board {
 				e1.printStackTrace();
 			}
 		}
-		
-		
 	}
 	
-	public int printMove(int x, int y) {				//returns the move# at a coordinate, used for jsp
+	//returns the move# at a coordinate, used for jsp
+	public int printMove(int x, int y) {				
 		return board[x][y];
 	}
 	
-	public boolean isAvailable(int x, int y) {			//is board position available?
+	//is board position already moved to/available?
+	public boolean isAvailable(int x, int y) {			
 		if (board[x][y] > 0)
 			return false;
 		else
@@ -147,7 +127,7 @@ public class Board {
 		moves.clear();
 		moves = new ArrayList<>();
 		
-		Coordinates move1 = new Coordinates(xPos+2, yPos+1);
+		Coordinates move1 = new Coordinates(xPos+2, yPos+1);	// calculated moves relative to position
 		Coordinates move2 = new Coordinates(xPos+1, yPos+2);
 		Coordinates move3 = new Coordinates(xPos-1, yPos+2);
 		Coordinates move4 = new Coordinates(xPos-2, yPos+1);
@@ -156,9 +136,9 @@ public class Board {
 		Coordinates move7 = new Coordinates(xPos+1, yPos-2);
 		Coordinates move8 = new Coordinates(xPos+2, yPos-1);
 		
-		moves.addAll(Arrays.asList(move1,move2,move3,move4,move5,move6,move7,move8));
+		moves.addAll(Arrays.asList(move1,move2,move3,move4,move5,move6,move7,move8));	// add all moves to ArrayList
 		
-		Iterator<Coordinates> i = moves.iterator();				//remove outofbounds coordinates
+		Iterator<Coordinates> i = moves.iterator();				//remove outofbounds coordinates from ArrayList
 		while (i.hasNext()) {
 			Coordinates moves = i.next();
 			if (moves.getX() < 0 | moves.getY() < 0 | moves.getX() > 7 | moves.getY() > 7) {
@@ -166,7 +146,7 @@ public class Board {
 			}
 		}
 		
-		Iterator<Coordinates> z = moves.iterator();				//verify availability of coord
+		Iterator<Coordinates> z = moves.iterator();				//verify availability of coords inside ArrayList
 		while (z.hasNext()) {
 			Coordinates moves = z.next();
 			if (!isAvailable(moves.getX(), moves.getY())) {
@@ -174,8 +154,8 @@ public class Board {
 			}
 		}
 		
-		if (!moves.isEmpty()) {
-			Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose random coordinate
+		if (!moves.isEmpty()) {			// if there are moves to choose from...
+			Coordinates selected = moves.get(r.nextInt(moves.size()));	//choose a random coordinate
 			return selected;
 		} else {
 			setCanMove(false);

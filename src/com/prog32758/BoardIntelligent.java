@@ -14,10 +14,6 @@ public class BoardIntelligent extends Board {
 		super(x, y);
 	}
 
-	public BoardIntelligent() {
-		super();
-	}
-
 	// heuristics board initialization
 	private int[] r1 = new int[] { // row 0,7
 			2, 3, 4, 4, 4, 4, 3, 2 };
@@ -30,18 +26,18 @@ public class BoardIntelligent extends Board {
 
 	private int[][] heuristicBoard = new int[][] { r1, r2, r3, r3, r3, r3, r2, r1 };
 
-	// match coordinates to respective heuristic values
+	// match coordinates to their respective heuristic values
 	public void setHeuristic(Coordinates coord) {
-		coord.setHeuristicRank(heuristicBoard[coord.getX()][coord.getY()]);
+		coord.setHeuristicRank(heuristicBoard[coord.getX()][coord.getY()]);		//Coordinates class has field to store heuristic values 
 	}
 
 	// check for best coordinates to move to
 	public Coordinates bestCoordinate(ArrayList<Coordinates> coords) {
 		Coordinates best = coords.get(0);
 		
-		ArrayList<Coordinates> bestMoves = new ArrayList<>();
+		ArrayList<Coordinates> bestMoves = new ArrayList<>();	//store coordinates with strongest heuristic ranks
 		
-		ListIterator<Coordinates> j = coords.listIterator();	//finds strongest heuristic rank
+		ListIterator<Coordinates> j = coords.listIterator();	//finds the strongest heuristic rank
 		while (j.hasNext()) {
 			Coordinates coord = j.next();			
 			if(j.hasPrevious()) {
